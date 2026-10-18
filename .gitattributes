@@ -1,0 +1,7 @@
+# Keep published WASM/JS bytes unchanged. CRLF conversion breaks boot.
+*_framework/** -text
+*.js -text
+*.wasm -text
+*.dat -text
+*.br -text
+*.gz -text

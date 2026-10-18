@@ -1,0 +1,85 @@
+html, body {
+    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+}
+
+.page {
+    padding: 1rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+input {
+    display: block;
+    width: 100%;
+    max-width: 28rem;
+    margin-top: 0.25rem;
+    padding: 0.4rem 0.5rem;
+}
+
+button {
+    margin-top: 0.5rem;
+    padding: 0.45rem 0.9rem;
+}
+
+[data-testid="home-status"] {
+    margin-top: 1rem;
+    color: #333;
+}
+
+.loading-progress {
+    position: relative;
+    display: block;
+    width: 8rem;
+    height: 8rem;
+    margin: 20vh auto 1rem;
+}
+
+.loading-progress circle {
+    fill: none;
+    stroke: #e0e0e0;
+    stroke-width: 0.6rem;
+    transform-origin: 50% 50%;
+    transform: rotate(-90deg);
+}
+
+.loading-progress circle:last-child {
+    stroke: #1b6ec2;
+    stroke-dasharray: calc(3.14159265359 * 8rem);
+    stroke-dashoffset: calc(3.14159265359 * 8rem);
+    animation: progress-loading 1.5s ease-in-out infinite;
+}
+
+@keyframes progress-loading {
+    0% { stroke-dashoffset: calc(3.14159265359 * 8rem); }
+    50% { stroke-dashoffset: calc(3.14159265359 * 2rem); }
+    100% { stroke-dashoffset: calc(3.14159265359 * 8rem); }
+}
+
+.loading-progress-text {
+    text-align: center;
+    font-weight: bold;
+}
+
+#blazor-error-ui {
+    background: lightyellow;
+    bottom: 0;
+    box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
+    display: none;
+    left: 0;
+    padding: 0.6rem 1.25rem;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+}
+
+#blazor-error-ui .dismiss {
+    cursor: pointer;
+    position: absolute;
+    right: 0.75rem;
+    top: 0.5rem;
+}
