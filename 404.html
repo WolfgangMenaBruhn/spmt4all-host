@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SPMT4all</title>
+  <script>
+    // GitHub Pages SPA fallback: redirect /path to /?/path for client routing.
+    (function () {
+      var path = location.pathname;
+      var base = "/spmt4all-host/".replace(/\/$/, "") || "";
+      var relative = path;
+      if (base && path.indexOf(base) === 0) {
+        relative = path.slice(base.length) || "/";
+      }
+      location.replace(
+        location.protocol + "//" + location.host + base + "/?" +
+        relative.replace(/&/g, "~and~") +
+        (location.search ? "&" + location.search.slice(1).replace(/&/g, "~and~") : "") +
+        location.hash
+      );
+    })();
+  </script>
+</head>
+<body></body>
+</html>
