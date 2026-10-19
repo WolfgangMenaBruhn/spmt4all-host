@@ -21,7 +21,7 @@ html, body {
 }
 
 .app-header {
-    padding: 0.75rem 1rem 0.5rem;
+    padding: 0.5rem 1rem;
     border-bottom: 1px solid #ddd;
 }
 
@@ -29,7 +29,6 @@ html, body {
     display: flex;
     flex-wrap: wrap;
     gap: 0.75rem;
-    margin-top: 0.5rem;
 }
 
 .nav-link {
