@@ -4,53 +4,92 @@
     box-sizing: border-box;
 }
 
-html, body {
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+:root {
+    color-scheme: light;
+    --ink: #1b2838;
+    --muted: #5c6b7a;
+    --line: #d9e1e8;
+    --accent: #1b6ec2;
+    --accent-ink: #fff;
+    --danger: #b32121;
+    --surface: #f6f8fa;
+    --selected: #e8f1fb;
+    font-family: "Segoe UI", system-ui, sans-serif;
+}
+
+html, body, #app {
     margin: 0;
     padding: 0;
+    height: 100%;
     max-width: 100%;
     overflow-x: hidden;
+    background: #fff;
+    color: var(--ink);
+    font-family: inherit;
 }
 
 .app-shell {
+    height: 100%;
     min-height: 100vh;
     display: flex;
     flex-direction: column;
     width: 100%;
     max-width: 100%;
+    overflow: hidden;
 }
 
 .app-header {
-    padding: 0.5rem 1rem;
-    border-bottom: 1px solid #ddd;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    border-bottom: 1px solid var(--line);
+    background: var(--surface);
 }
 
 .app-header nav {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.75rem;
+    gap: 0.5rem 0.85rem;
 }
 
-.nav-link {
+.app-header .nav-link {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 0.92rem;
     background: none;
     border: none;
     padding: 0;
-    color: #0563c1;
     cursor: pointer;
     font: inherit;
 }
 
-.nav-link.active {
-    text-decoration: underline;
+.app-header .nav-link.active {
     font-weight: 600;
+    text-decoration: underline;
 }
 
 .app-main,
 .page {
+    flex: 1;
+    min-height: 0;
+    overflow: auto;
     padding: 1rem;
     width: 100%;
     max-width: 100%;
     min-width: 0;
+}
+
+h1 {
+    font-size: 1.25rem;
+    margin: 0 0 0.75rem;
+    text-align: center;
+}
+
+h2 {
+    font-size: 1.05rem;
+    margin: 1.25rem 0 0.5rem;
+    text-align: center;
 }
 
 .help-body {
@@ -78,25 +117,31 @@ html, body {
     list-style: none;
     margin: 0;
     padding: 0;
-    border: 1px solid #ddd;
 }
 
 .entity-list li {
-    padding: 0.5rem 0.65rem;
+    display: grid;
+    gap: 0.15rem;
+    padding: 0.55rem 0.65rem;
     cursor: pointer;
-    border-bottom: 1px solid #eee;
+    border-bottom: 1px solid var(--line);
 }
 
 .entity-list li.selected,
 .data-table tr.selected {
-    background: #dceeff;
+    background: var(--selected);
+}
+
+.entity-list span {
+    color: var(--muted);
+    font-size: 0.85rem;
 }
 
 .toolbar {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
-    margin: 0.75rem 0;
+    margin: 0 0 0.75rem;
 }
 
 .table-scroll {
@@ -110,13 +155,15 @@ html, body {
     width: 100%;
     min-width: 16rem;
     border-collapse: collapse;
+    font-size: 0.82rem;
+    margin-bottom: 1rem;
 }
 
 .data-table th,
 .data-table td {
-    border-bottom: 1px solid #e5e5e5;
+    border-bottom: 1px solid var(--line);
     text-align: left;
-    padding: 0.4rem 0.5rem;
+    padding: 0.35rem 0.4rem;
     vertical-align: top;
 }
 
@@ -127,7 +174,8 @@ html, body {
 .form-grid {
     display: grid;
     grid-template-columns: 1fr;
-    gap: 0.75rem;
+    gap: 0.65rem;
+    margin-bottom: 1rem;
 }
 
 @media (min-width: 640px) {
@@ -140,27 +188,37 @@ html, body {
     display: flex;
     flex-wrap: wrap;
     gap: 0.5rem;
+    align-items: center;
     margin-top: 0.75rem;
 }
 
 .overlay {
     position: fixed;
     inset: 0;
-    background: rgba(0, 0, 0, 0.35);
+    background: rgba(27, 40, 56, 0.45);
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     justify-content: center;
+    overflow: auto;
+    padding: 0.75rem;
     z-index: 1000;
+    box-sizing: border-box;
 }
 
 .overlay-dialog {
     background: #fff;
-    padding: 1rem 1.25rem;
+    border-radius: 6px;
+    padding: 0.85rem 1.25rem;
     max-width: min(28rem, 96vw);
-    width: 92%;
-    max-height: 90vh;
+    width: min(40rem, 100%);
+    max-height: calc(100% - 1.5rem);
     overflow: auto;
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
+    margin: 0;
+    box-shadow: 0 4px 16px rgba(27, 40, 56, 0.2);
+}
+
+.confirm-dialog {
+    width: min(22rem, 100%);
 }
 
 .notes,
@@ -174,44 +232,81 @@ textarea {
 }
 
 .link-button {
+    display: inline;
     background: none;
     border: none;
     padding: 0;
-    color: #0563c1;
+    color: var(--accent);
     cursor: pointer;
     font: inherit;
     text-decoration: underline;
 }
 
-.hint {
+.hint,
+.status {
     font-size: 0.85rem;
-    color: #555;
+    color: var(--muted);
 }
 
 .error {
-    color: #a40000;
+    color: var(--danger);
 }
 
 label {
-    display: block;
+    display: grid;
+    gap: 0.25rem;
+    font-size: 0.85rem;
     margin-bottom: 0.75rem;
 }
 
-input {
+input,
+select,
+textarea,
+button {
+    font: inherit;
+}
+
+input,
+select,
+textarea {
     display: block;
     width: 100%;
     max-width: 100%;
     margin-top: 0.25rem;
     padding: 0.4rem 0.5rem;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    background: #fff;
+    color: var(--ink);
+}
+
+input:disabled,
+select:disabled,
+textarea:disabled {
+    opacity: 0.6;
+    cursor: not-allowed;
+    background: var(--surface);
 }
 
 button {
     margin-top: 0.5rem;
-    padding: 0.45rem 0.9rem;
+    padding: 0.45rem 0.8rem;
+    background: var(--accent);
+    color: var(--accent-ink);
+    border: 0;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
 }
 
 button.secondary {
-    background: #f3f3f3;
+    background: #fff;
+    color: var(--ink);
+    border: 1px solid var(--line);
 }
 
 .toolbar button,
@@ -221,7 +316,7 @@ button.secondary {
 
 [data-testid="home-status"] {
     margin-top: 1rem;
-    color: #333;
+    color: var(--ink);
 }
 
 .loading-progress {
@@ -241,7 +336,7 @@ button.secondary {
 }
 
 .loading-progress circle:last-child {
-    stroke: #1b6ec2;
+    stroke: var(--accent);
     stroke-dasharray: calc(3.14159265359 * 8rem);
     stroke-dashoffset: calc(3.14159265359 * 8rem);
     animation: progress-loading 1.5s ease-in-out infinite;
@@ -256,10 +351,13 @@ button.secondary {
 .loading-progress-text {
     text-align: center;
     font-weight: bold;
+    color: var(--ink);
 }
 
 #blazor-error-ui {
+    color-scheme: light only;
     background: lightyellow;
+    color: var(--ink);
     bottom: 0;
     box-shadow: 0 -1px 2px rgba(0, 0, 0, 0.2);
     display: none;
