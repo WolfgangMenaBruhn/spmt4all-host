@@ -125,6 +125,23 @@ window.excelInterop = {
     },
 
     /**
+     * Updates the task-pane URL for in-pane Blazor routes without leaving the GitHub Pages base path.
+     */
+    navigate(path) {
+        const url = new URL(window.location.href);
+        const baseHref = document.querySelector("base")?.getAttribute("href") || "/";
+        const baseUrl = new URL(baseHref, url.origin);
+        const relative = !path || path === "/" ? "./" : String(path).replace(/^\//, "");
+        const nextUrl = new URL(relative, baseUrl);
+        nextUrl.search = url.search;
+        nextUrl.hash = "";
+        const next = `${nextUrl.pathname}${nextUrl.search}`;
+        const push = this._nativePushState || window.history.pushState.bind(window.history);
+        push(null, "", next);
+        window.dispatchEvent(new PopStateEvent("popstate"));
+    },
+
+    /**
      * Writes a string value to a cell address on the active worksheet (e.g. "A1").
      */
     async writeCell(address, value) {
