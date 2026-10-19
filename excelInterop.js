@@ -143,6 +143,91 @@ window.excelInterop = {
             const cell = range.values && range.values[0] ? range.values[0][0] : null;
             return cell == null ? null : String(cell);
         });
+    },
+
+    /**
+     * Reads the used range of a named sheet as string cells (for settings storage).
+     * Returns null when the sheet does not exist.
+     */
+    async readUsedRange(sheetName) {
+        return await Excel.run(async (context) => {
+            const sheet = context.workbook.worksheets.getItemOrNullObject(sheetName);
+            sheet.load("isNullObject");
+            await context.sync();
+            if (sheet.isNullObject) {
+                return null;
+            }
+
+            const range = sheet.getUsedRangeOrNullObject();
+            range.load(["values", "rowCount", "columnCount"]);
+            await context.sync();
+            if (range.isNullObject) {
+                return { values: [], rowCount: 0, columnCount: 0 };
+            }
+
+            return {
+                values: range.values.map(row => row.map(cell => cell == null ? null : String(cell))),
+                rowCount: range.rowCount,
+                columnCount: range.columnCount
+            };
+        });
+    },
+
+    /**
+     * Creates or replaces a named sheet with a full 2D values grid (settings storage).
+     * Sheets are very-hidden unless showSheet is true (Debug).
+     */
+    async writeSheet(sheetName, values, showSheet) {
+        await Excel.run(async (context) => {
+            let sheet = context.workbook.worksheets.getItemOrNullObject(sheetName);
+            sheet.load("isNullObject");
+            await context.sync();
+
+            if (sheet.isNullObject) {
+                sheet = context.workbook.worksheets.add(sheetName);
+            }
+
+            sheet.visibility = showSheet
+                ? Excel.SheetVisibility.visible
+                : Excel.SheetVisibility.veryHidden;
+
+            const used = sheet.getUsedRangeOrNullObject();
+            used.load("isNullObject");
+            await context.sync();
+            if (!used.isNullObject) {
+                used.clear();
+            }
+
+            const rowCount = values.length;
+            const columnCount = rowCount === 0 ? 1 : values[0].length;
+            const target = sheet.getRangeByIndexes(0, 0, Math.max(rowCount, 1), Math.max(columnCount, 1));
+            target.numberFormat = "@";
+            if (rowCount > 0) {
+                target.values = values;
+                sheet.getRangeByIndexes(0, 0, 1, columnCount).format.font.bold = true;
+            }
+
+            await context.sync();
+        });
+    },
+
+    /**
+     * Sets visibility of an existing named sheet (visible vs veryHidden).
+     */
+    async setSheetVisibility(sheetName, showSheet) {
+        await Excel.run(async (context) => {
+            const sheet = context.workbook.worksheets.getItemOrNullObject(sheetName);
+            sheet.load("isNullObject");
+            await context.sync();
+            if (sheet.isNullObject) {
+                return;
+            }
+
+            sheet.visibility = showSheet
+                ? Excel.SheetVisibility.visible
+                : Excel.SheetVisibility.veryHidden;
+            await context.sync();
+        });
     }
 };
 
