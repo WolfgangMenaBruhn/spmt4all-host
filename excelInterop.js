@@ -58,7 +58,7 @@ window.excelInterop = {
                 this._startBlazorIfPending();
             });
 
-        this._loadScript(officeBase + "en-us/office_strings.js")
+        this._loadScript(officeBase + "de-de/office_strings.js")
             .catch(() => {})
             .then(loadOfficeJs);
     },
@@ -70,7 +70,7 @@ window.excelInterop = {
             }
 
             this._blazorStarted = true;
-            Promise.resolve(Blazor.start({ applicationCulture: "en" })).catch((error) => {
+            Promise.resolve(Blazor.start({ applicationCulture: "de-DE" })).catch((error) => {
                 console.error("SPMT4all: Blazor.start failed", error);
             });
         };

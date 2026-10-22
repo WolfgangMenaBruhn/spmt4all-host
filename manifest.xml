@@ -6,11 +6,11 @@
   xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
   xsi:type="TaskPaneApp">
   <Id>1c1b310e-a7bd-4477-ac87-b22bd04c8416</Id>
-  <Version>1.1.5.0</Version>
+  <Version>1.1.6.0</Version>
   <ProviderName>Mannasoft</ProviderName>
-  <DefaultLocale>en-US</DefaultLocale>
+  <DefaultLocale>de-DE</DefaultLocale>
   <DisplayName DefaultValue="SPMT4all" />
-  <Description DefaultValue="SPMT4all Excel task pane add-in." />
+  <Description DefaultValue="SPMT4all Excel-Aufgabenbereich-Add-In." />
   <IconUrl DefaultValue="https://wolfgangmenabruhn.github.io/spmt4all-host/assets/icon-32.png" />
   <HighResolutionIconUrl DefaultValue="https://wolfgangmenabruhn.github.io/spmt4all-host/assets/icon-80.png" />
   <SupportUrl DefaultValue="https://wolfgangmenabruhn.github.io/spmt4all-host/support.html" />
@@ -80,13 +80,13 @@
         <bt:Url id="Taskpane.Url" DefaultValue="https://wolfgangmenabruhn.github.io/spmt4all-host/" />
       </bt:Urls>
       <bt:ShortStrings>
-        <bt:String id="GetStarted.Title" DefaultValue="Get started with SPMT4all" />
+        <bt:String id="GetStarted.Title" DefaultValue="Erste Schritte mit SPMT4all" />
         <bt:String id="Group.Label" DefaultValue="SPMT4all" />
         <bt:String id="TaskpaneButton.Label" DefaultValue="SPMT4all" />
       </bt:ShortStrings>
       <bt:LongStrings>
-        <bt:String id="GetStarted.Description" DefaultValue="Open the task pane to use SPMT4all." />
-        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Open the SPMT4all task pane" />
+        <bt:String id="GetStarted.Description" DefaultValue="Öffnen Sie den Aufgabenbereich, um SPMT4all zu nutzen." />
+        <bt:String id="TaskpaneButton.Tooltip" DefaultValue="Aufgabenbereich von SPMT4all öffnen" />
       </bt:LongStrings>
     </Resources>
   </VersionOverrides>
