@@ -16,6 +16,10 @@ window.excelInterop = {
             // sessionStorage can throw in a sandboxed frame
         }
 
+        if (window.location.pathname.toLowerCase().includes("/dialog/")) {
+            return true;
+        }
+
         return false;
     },
 
@@ -142,31 +146,14 @@ window.excelInterop = {
     },
 
     /**
-     * Writes a string value to a cell address on the active worksheet (e.g. "A1").
-     */
-    async writeCell(address, value) {
-        await Excel.run(async (context) => {
-            const range = context.workbook.worksheets.getActiveWorksheet().getRange(address);
-            range.values = [[value == null ? "" : String(value)]];
-            await context.sync();
-        });
-    },
-
-    async readCell(address) {
-        return await Excel.run(async (context) => {
-            const range = context.workbook.worksheets.getActiveWorksheet().getRange(address);
-            range.load("values");
-            await context.sync();
-            const cell = range.values && range.values[0] ? range.values[0][0] : null;
-            return cell == null ? null : String(cell);
-        });
-    },
-
-    /**
      * Reads the used range of a named sheet as string cells (for settings storage).
      * Returns null when the sheet does not exist.
      */
     async readUsedRange(sheetName) {
+        if (typeof Excel === "undefined") {
+            throw new Error("Excel ist nicht verfügbar.");
+        }
+
         return await Excel.run(async (context) => {
             const sheet = context.workbook.worksheets.getItemOrNullObject(sheetName);
             sheet.load("isNullObject");
@@ -245,6 +232,97 @@ window.excelInterop = {
                 : Excel.SheetVisibility.veryHidden;
             await context.sync();
         });
+    },
+
+    /**
+     * Opens an Office dialog sized as a percentage of the screen (not the task pane).
+     * dotNetRef receives OnDialogMessage(string) and OnDialogClosed().
+     */
+    openDialog(dotNetRef, url, heightPercent, widthPercent) {
+        if (!this.isReady || typeof Office === "undefined" || !Office.context || !Office.context.ui) {
+            return Promise.reject(new Error("Excel-Dialog ist nicht verfügbar."));
+        }
+
+        if (this._dialog) {
+            this._dialog.close();
+            this._dialog = null;
+        }
+
+        return new Promise((resolve, reject) => {
+            Office.context.ui.displayDialogAsync(
+                url,
+                { height: heightPercent, width: widthPercent },
+                (result) => {
+                    if (result.status === Office.AsyncResultStatus.Failed) {
+                        const message = result.error && result.error.message
+                            ? result.error.message
+                            : "Dialog konnte nicht geöffnet werden.";
+                        reject(new Error(message));
+                        return;
+                    }
+
+                    this._dialog = result.value;
+                    this._dialog.addEventHandler(Office.EventType.DialogMessageReceived, (arg) => {
+                        dotNetRef.invokeMethodAsync("OnDialogMessage", arg.message || "");
+                    });
+                    this._dialog.addEventHandler(Office.EventType.DialogEventReceived, () => {
+                        this._dialog = null;
+                        dotNetRef.invokeMethodAsync("OnDialogClosed");
+                    });
+                    resolve();
+                });
+        });
+    },
+
+    messageChild(message) {
+        if (!this._dialog) {
+            throw new Error("Kein Bearbeitungsfenster offen.");
+        }
+
+        this._dialog.messageChild(message);
+    },
+
+    closeDialog() {
+        if (!this._dialog) {
+            return;
+        }
+
+        this._dialog.close();
+        this._dialog = null;
+    },
+
+    /**
+     * Listens for task-pane messages inside the dialog. dotNetRef receives OnParentMessage(string).
+     */
+    registerParentChannel(dotNetRef) {
+        if (typeof Office === "undefined" || !Office.context || !Office.context.ui) {
+            return Promise.resolve();
+        }
+
+        return new Promise((resolve, reject) => {
+            Office.context.ui.addHandlerAsync(
+                Office.EventType.DialogParentMessageReceived,
+                (arg) => {
+                    dotNetRef.invokeMethodAsync("OnParentMessage", arg.message || "");
+                },
+                (result) => {
+                    if (result.status === Office.AsyncResultStatus.Failed) {
+                        reject(new Error("Nachrichten vom Aufgabenbereich sind nicht verfügbar."));
+                        return;
+                    }
+
+                    resolve();
+                });
+        });
+    },
+
+    notifyParent(message) {
+        if (typeof Office === "undefined" || !Office.context || !Office.context.ui ||
+            typeof Office.context.ui.messageParent !== "function") {
+            throw new Error("Das Fenster kann dem Aufgabenbereich keine Nachricht senden.");
+        }
+
+        Office.context.ui.messageParent(message);
     }
 };
 
