@@ -181,6 +181,21 @@ html, body {
     width: 100%;
 }
 
+.dialog-page h1.dialog-title {
+    margin: 0 0 1.25rem;
+    padding: 0;
+    border: none;
+    font-size: 1.35rem;
+    font-weight: 600;
+    line-height: 1.3;
+    color: #1b2838;
+}
+
+/* FocusOnNavigate moves focus to h1 for accessibility; hide the focus ring so it is not mistaken for a title border. */
+h1:focus {
+    outline: none;
+}
+
 .notes,
 textarea {
     display: block;
