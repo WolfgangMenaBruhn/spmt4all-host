@@ -310,6 +310,26 @@ html, body {
     gap: 0.75rem;
 }
 
+.tab-panel-units {
+    flex: 1 1 auto;
+    min-height: 0;
+}
+
+.tab-panel-footer {
+    flex: 0 0 auto;
+    margin-top: auto;
+    padding-top: 0.75rem;
+    border-top: 1px solid #d0d7de;
+}
+
+.tab-panel-footer .hint {
+    margin: 0;
+}
+
+.tab-panel-footer .hint + .hint {
+    margin-top: 0.35rem;
+}
+
 .field-with-hint-row {
     display: flex;
     flex-wrap: wrap;
@@ -341,6 +361,16 @@ html, body {
     margin-top: 0;
 }
 
+.field-with-hint-row .icon-button {
+    flex: 0 0 auto;
+    width: 2rem;
+    min-width: 2rem;
+    padding: 0.35rem 0;
+    margin-top: 0;
+    line-height: 1;
+    font-size: 1rem;
+}
+
 .area-input {
     font-variant-numeric: tabular-nums;
 }
@@ -368,6 +398,8 @@ html, body {
 }
 
 .dialog-body {
+    display: flex;
+    flex-direction: column;
     flex: 1 1 auto;
     min-height: 0;
     overflow: auto;
