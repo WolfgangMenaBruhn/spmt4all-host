@@ -6,7 +6,7 @@
   xmlns:ov="http://schemas.microsoft.com/office/taskpaneappversionoverrides"
   xsi:type="TaskPaneApp">
   <Id>1c1b310e-a7bd-4477-ac87-b22bd04c8416</Id>
-  <Version>1.4.1.0</Version>
+  <Version>1.5.0.0</Version>
   <ProviderName>Mannasoft</ProviderName>
   <DefaultLocale>de-DE</DefaultLocale>
   <DisplayName DefaultValue="SPMT4all" />

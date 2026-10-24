@@ -120,6 +120,17 @@ window.excelInterop = {
         return this.host;
     },
 
+    /**
+     * Excel display language (e.g. "de-DE"), or null outside Office. Date display follows this culture.
+     */
+    getDisplayLanguage() {
+        try {
+            return (typeof Office !== "undefined" && Office.context && Office.context.displayLanguage) || null;
+        } catch {
+            return null;
+        }
+    },
+
     getStatus() {
         return {
             ok: this.isReady && this.host === "Excel",

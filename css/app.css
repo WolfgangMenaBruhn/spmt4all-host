@@ -489,6 +489,49 @@ button.secondary {
     margin-top: 0;
 }
 
+input[type="checkbox"] {
+    display: inline-block;
+    width: auto;
+    margin: 0 0.4rem 0 0;
+    padding: 0;
+    vertical-align: middle;
+}
+
+.checkbox-label {
+    display: flex;
+    align-items: center;
+    margin-bottom: 0.25rem;
+}
+
+.section-title {
+    font-size: 1.05rem;
+    margin: 1rem 0 0.5rem;
+}
+
+.confirm-dialog p {
+    white-space: pre-line;
+}
+
+/* Von / Bis: typed text plus date picker; wraps under each other in a narrow window. */
+.date-field {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem;
+    min-width: 8rem;
+}
+
+.date-field input {
+    margin-top: 0;
+    flex: 1 1 7rem;
+    width: auto;
+    min-width: 0;
+}
+
+.date-field input.date-picker {
+    flex: 0 0 2.4rem;
+    padding: 0.4rem 0.2rem;
+}
+
 [data-testid="home-status"] {
     margin-top: 1rem;
     color: #333;
