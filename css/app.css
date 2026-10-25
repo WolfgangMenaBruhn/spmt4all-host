@@ -138,6 +138,58 @@ html, body {
     cursor: pointer;
 }
 
+.occupied-periods {
+    display: flex;
+    flex-direction: column;
+    gap: 0.15rem;
+    white-space: nowrap;
+}
+
+.occupancy-col {
+    width: 2.4rem;
+    text-align: center;
+    white-space: nowrap;
+}
+
+.icon-glyph {
+    display: inline-block;
+    width: 1.15rem;
+    height: 1.15rem;
+    vertical-align: middle;
+}
+
+button.occupancy-info {
+    margin-top: 0;
+    padding: 0.15rem;
+    width: 1.7rem;
+    min-width: 1.7rem;
+    background: transparent;
+    border: none;
+    color: #1b2838;
+    line-height: 0;
+}
+
+button.occupancy-info:hover {
+    background: #e8eef5;
+}
+
+.occupancy-list {
+    margin: 0 0 0.75rem;
+    padding-left: 1.2rem;
+}
+
+.visually-hidden {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 /* In-flow hover panel (not absolute): table overflow would clip a floating tooltip. */
 .row-tooltip {
     display: none;
@@ -532,6 +584,13 @@ input[type="checkbox"] {
 .date-field input.date-picker {
     flex: 0 0 2.4rem;
     padding: 0.4rem 0.2rem;
+}
+
+.date-field input:disabled {
+    color: #1b2838;
+    -webkit-text-fill-color: #1b2838;
+    opacity: 1;
+    background: #f4f6f8;
 }
 
 [data-testid="home-status"] {
