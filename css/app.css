@@ -165,19 +165,21 @@ html, body {
     background: #f7fafc;
 }
 
-.address-block-summary {
+button.address-block-summary {
     cursor: pointer;
     display: flex;
     flex-wrap: wrap;
     align-items: baseline;
     gap: 0.5rem 0.75rem;
-    list-style: none;
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    background: transparent;
+    font: inherit;
     font-weight: 600;
+    text-align: left;
     color: #1b2838;
-}
-
-.address-block-summary::-webkit-details-marker {
-    display: none;
 }
 
 .address-block-summary::before {
@@ -188,7 +190,7 @@ html, body {
     font-weight: 700;
 }
 
-.address-block[open] > .address-block-summary::before {
+.address-block.is-open > .address-block-summary::before {
     content: "▾";
 }
 
@@ -230,7 +232,7 @@ html, body {
 }
 
 .address-block .actions,
-.address-block button {
+.address-block-body button {
     margin-top: 0.25rem;
 }
 
