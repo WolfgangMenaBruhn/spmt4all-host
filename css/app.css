@@ -116,6 +116,9 @@ html, body {
 .table-scroll {
     width: 100%;
     max-width: 100%;
+    /* Keep full table height in a flex dialog-body; overflow-x alone would allow
+       the flex item to shrink to 0 when the address block expands (WebView2). */
+    flex-shrink: 0;
     overflow-x: auto;
     -webkit-overflow-scrolling: touch;
 }
@@ -318,12 +321,14 @@ button.address-block-summary {
 }
 
 .overlay-dialog {
+    display: flex;
+    flex-direction: column;
     background: #fff;
-    padding: 1rem 1.25rem;
+    padding: 1rem 1.25rem 0;
     max-width: min(28rem, 96vw);
     width: 92%;
     max-height: 90vh;
-    overflow: auto;
+    overflow: hidden;
     box-shadow: 0 4px 16px rgba(0, 0, 0, 0.2);
 }
 
@@ -340,6 +345,254 @@ button.address-block-summary {
     gap: 0.25rem;
     margin: 0 0 1rem;
     border-bottom: 1px solid #d0d7de;
+}
+
+.tab-bar-nested {
+    margin-top: 0.25rem;
+}
+
+.overlay-dialog-wide {
+    width: min(52rem, 96vw);
+    max-width: min(52rem, 96vw);
+}
+
+.overlay-dialog-body {
+    flex: 1 1 auto;
+    min-height: 0;
+    overflow: auto;
+    padding-bottom: 0.25rem;
+}
+
+.overlay-dialog-footer {
+    flex: 0 0 auto;
+    padding: 0.75rem 0 1rem;
+    border-top: 1px solid #d0d7de;
+    background: #fff;
+}
+
+.overlay-dialog-footer .error {
+    margin: 0 0 0.5rem;
+}
+
+.overlay-dialog-footer .actions {
+    margin-top: 0;
+}
+
+.overlay-subtitle {
+    margin: 1rem 0 0.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1b2838;
+}
+
+.type-picker {
+    position: relative;
+    display: block;
+    margin-bottom: 0.75rem;
+}
+
+.type-picker-label {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.type-picker-trigger {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    width: 100%;
+    max-width: 100%;
+    margin-top: 0.25rem;
+    padding: 0.4rem 0.5rem;
+    text-align: left;
+    background: #fff;
+    border: 1px solid #8a8a8a;
+    border-radius: 2px;
+    color: inherit;
+    font: inherit;
+    line-height: 1.3;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.type-picker-trigger:hover {
+    border-color: #0563c1;
+    background: #f8fafc;
+}
+
+.type-picker-trigger.is-open {
+    border-color: #0563c1;
+    box-shadow: 0 0 0 1px #0563c1;
+}
+
+.type-picker-trigger-value {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.type-picker-chevron {
+    flex: 0 0 auto;
+    width: 0.95rem;
+    height: 0.95rem;
+    color: #555;
+    transition: transform 0.15s ease;
+}
+
+.type-picker-trigger.is-open .type-picker-chevron {
+    transform: rotate(180deg);
+}
+
+.type-picker button {
+    margin-top: 0;
+}
+
+.type-picker-dropdown {
+    display: flex;
+    flex-direction: column;
+    margin-top: 0.35rem;
+    background: #fff;
+    border: 1px solid #d0d7de;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+}
+
+.type-picker-list {
+    margin: 0;
+    padding: 0.15rem 0;
+    list-style: none;
+    overflow: visible;
+}
+
+.type-picker-row {
+    padding: 0.1rem 0.5rem;
+}
+
+.type-picker-row.selected {
+    background: #e8eef5;
+}
+
+.picker-help-overlay {
+    z-index: 1100;
+}
+
+.type-picker-row-main {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.35rem;
+    min-height: 2.25rem;
+}
+
+.type-picker-name {
+    display: block;
+    flex: 1 1 auto;
+    min-width: 0;
+    margin: 0;
+    padding: 0.35rem 0.25rem;
+    text-align: left;
+    background: transparent;
+    border: none;
+    color: inherit;
+    font: inherit;
+    cursor: pointer;
+    white-space: normal;
+    line-height: 1.3;
+}
+
+.type-picker-name:hover {
+    background: #f0f4f8;
+}
+
+.type-picker-info-button {
+    display: inline-flex;
+    flex: 0 0 auto;
+    align-items: center;
+    justify-content: center;
+}
+
+.type-picker-info-explanation,
+.type-picker-info-example {
+    margin: 0;
+    font-size: 0.95rem;
+    line-height: 1.45;
+}
+
+.type-picker-info-example-label {
+    margin: 0.75rem 0 0.25rem;
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.allocation-param-row .type-picker {
+    flex: 1 1 16rem;
+    min-width: min(100%, 16rem);
+}
+
+.allocation-param-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: flex-start;
+    gap: 0.75rem 1rem;
+    margin-bottom: 0.75rem;
+    padding-bottom: 0.75rem;
+    border-bottom: 1px solid #e8ecef;
+}
+
+.allocation-param-row label {
+    flex: 1 1 10rem;
+    min-width: 0;
+}
+
+.allocation-param-name-input-row {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.allocation-param-name-input-row > input {
+    flex: 1 1 auto;
+    min-width: 0;
+}
+
+.allocation-param-fixed-unit {
+    flex: 0 0 auto;
+    font-weight: 600;
+    line-height: 1;
+}
+
+.example-param-field {
+    flex: 1 1 100%;
+    min-width: 0;
+}
+
+.field-caption {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.value-with-unit {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+}
+
+.value-with-unit > input {
+    flex: 1 1 8rem;
+    min-width: 0;
+}
+
+.unit-suffix {
+    color: #5b6b7c;
+    white-space: nowrap;
+}
+
+.value-with-unit .example-confirm {
+    flex: 0 0 auto;
+    margin-bottom: 0;
+    white-space: nowrap;
 }
 
 .tab {
@@ -460,6 +713,12 @@ button.address-block-summary {
     padding-bottom: 0.5rem;
 }
 
+/* Default: body content keeps its natural height so overflow scrolls the body.
+   Only tab-panel-units may shrink (nested remaining-area footer layout). */
+.dialog-body > *:not(.tab-panel-units) {
+    flex-shrink: 0;
+}
+
 .dialog-footer {
     flex: 0 0 auto;
     margin-top: auto;
@@ -516,17 +775,24 @@ textarea {
     color: #a40000;
 }
 
+.example-errors {
+    white-space: pre-line;
+    margin: 0 0 0.5rem;
+}
+
 label {
     display: block;
     margin-bottom: 0.75rem;
 }
 
-input {
+input,
+select {
     display: block;
     width: 100%;
     max-width: 100%;
     margin-top: 0.25rem;
     padding: 0.4rem 0.5rem;
+    box-sizing: border-box;
 }
 
 button {
@@ -566,31 +832,78 @@ input[type="checkbox"] {
     white-space: pre-line;
 }
 
-/* Von / Bis: typed text plus date picker; wraps under each other in a narrow window. */
+/* Von / Bis: typed text plus calendar control; wraps under each other in a narrow window. */
 .date-field {
     display: flex;
     flex-wrap: wrap;
+    align-items: stretch;
     gap: 0.25rem;
     min-width: 8rem;
 }
 
-.date-field input {
+.date-field input.date-text {
     margin-top: 0;
     flex: 1 1 7rem;
     width: auto;
     min-width: 0;
 }
 
-.date-field input.date-picker {
+/* Own calendar glyph; native date input is an invisible hit-target on top (WebView2-safe). */
+.date-picker-wrap {
+    position: relative;
     flex: 0 0 2.4rem;
-    padding: 0.4rem 0.2rem;
+    width: 2.4rem;
+    min-width: 2.4rem;
+    border: 1px solid #8a8a8a;
+    border-radius: 2px;
+    background: #fff;
+    box-sizing: border-box;
 }
 
-.date-field input:disabled {
+.date-picker-face {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+    min-height: 2.05rem;
+    color: #555;
+    pointer-events: none;
+}
+
+.date-field input.date-picker {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    border: none;
+    opacity: 0;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.date-picker-wrap:hover:not(.is-disabled) {
+    border-color: #0563c1;
+    background: #f8fafc;
+}
+
+.date-picker-wrap.is-disabled {
+    background: #f4f6f8;
+}
+
+.date-picker-wrap.is-disabled .date-picker-face {
+    color: #8a8a8a;
+}
+
+.date-field input.date-text:disabled,
+.date-field input.date-picker:disabled {
     color: #1b2838;
     -webkit-text-fill-color: #1b2838;
     opacity: 1;
     background: #f4f6f8;
+    cursor: default;
 }
 
 [data-testid="home-status"] {
