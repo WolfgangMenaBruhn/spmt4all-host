@@ -141,6 +141,11 @@ html, body {
     cursor: pointer;
 }
 
+.data-table tbody tr.scope-property {
+    color: #555;
+    background: #f7f7f7;
+}
+
 .occupied-periods {
     display: flex;
     flex-direction: column;
