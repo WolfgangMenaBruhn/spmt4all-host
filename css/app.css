@@ -834,6 +834,10 @@ input[type="checkbox"] {
     margin-bottom: 0.25rem;
 }
 
+.checkbox-label.checkbox-label-end input[type="checkbox"] {
+    margin: 0 0 0 0.4rem;
+}
+
 .section-title {
     font-size: 1.05rem;
     margin: 1rem 0 0.5rem;
