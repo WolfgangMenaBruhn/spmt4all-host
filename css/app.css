@@ -780,6 +780,12 @@ textarea {
     color: #a40000;
 }
 
+label > .hint,
+label > .error,
+.data-table td > .hint {
+    display: block;
+}
+
 .example-errors {
     white-space: pre-line;
     margin: 0 0 0.5rem;
@@ -911,6 +917,126 @@ input[type="checkbox"] {
     cursor: default;
 }
 
+/* Jahr: typed year plus calendar button with a small year-list overlay. */
+.year-field {
+    position: relative;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: stretch;
+    gap: 0.25rem;
+    min-width: 6rem;
+}
+
+.year-field input.year-text {
+    margin-top: 0;
+    flex: 1 1 4.5rem;
+    width: auto;
+    min-width: 0;
+}
+
+.year-picker-button {
+    flex: 0 0 2.4rem;
+    width: 2.4rem;
+    min-width: 2.4rem;
+    margin: 0;
+    padding: 0;
+    border: 1px solid #8a8a8a;
+    border-radius: 2px;
+    background: #fff;
+    color: #555;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    box-sizing: border-box;
+}
+
+.year-picker-button:hover:not(:disabled):not(.is-disabled) {
+    border-color: #0563c1;
+    background: #f8fafc;
+}
+
+.year-picker-button:disabled,
+.year-picker-button.is-disabled {
+    background: #f4f6f8;
+    color: #8a8a8a;
+    cursor: default;
+}
+
+.year-field input.year-text:disabled {
+    color: #1b2838;
+    -webkit-text-fill-color: #1b2838;
+    opacity: 1;
+    background: #f4f6f8;
+    cursor: default;
+}
+
+.year-picker-overlay {
+    position: absolute;
+    z-index: 20;
+    top: calc(100% + 0.25rem);
+    left: 0;
+    min-width: 11rem;
+    max-width: 14rem;
+    background: #fff;
+    border: 1px solid #8a8a8a;
+    border-radius: 2px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+    padding: 0.5rem;
+}
+
+.year-picker-toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.35rem;
+    margin-bottom: 0.35rem;
+}
+
+.year-picker-toolbar button {
+    min-width: 2rem;
+    padding: 0.2rem 0.4rem;
+}
+
+.year-picker-range {
+    font-size: 0.85rem;
+    color: #555;
+}
+
+.year-picker-list {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.25rem;
+    max-height: 12rem;
+    overflow: auto;
+}
+
+.year-picker-item {
+    margin: 0;
+    padding: 0.35rem 0.25rem;
+    border: 1px solid transparent;
+    border-radius: 2px;
+    background: transparent;
+    color: #1b2838;
+    cursor: pointer;
+}
+
+.year-picker-item:hover {
+    background: #f0f6fc;
+}
+
+.year-picker-item.selected {
+    border-color: #0563c1;
+    background: #e8f1fa;
+    font-weight: 600;
+}
+
+.year-picker-footer {
+    margin-top: 0.4rem;
+    display: flex;
+    justify-content: flex-end;
+}
+
 [data-testid="home-status"] {
     margin-top: 1rem;
     color: #333;
@@ -968,4 +1094,76 @@ input[type="checkbox"] {
     position: absolute;
     right: 0.75rem;
     top: 0.5rem;
+}
+
+/* Nebenkostenabrechnung dialog (REQ-UI-023): field captions, result summary and position breakdown. */
+.field-label {
+    display: block;
+    margin-bottom: 0.25rem;
+}
+
+.result-summary th {
+    text-align: left;
+    font-weight: 600;
+    white-space: normal;
+}
+
+.result-position {
+    margin-bottom: 0.75rem;
+}
+
+.result-position-title {
+    margin: 0 0 0.25rem;
+    font-size: 1rem;
+}
+
+.result-breakdown {
+    margin: 0;
+    padding-left: 1.25rem;
+    overflow-wrap: anywhere;
+}
+
+.disclosure-group {
+    margin-bottom: 0.5rem;
+    border: 1px solid #d0d0d0;
+    border-radius: 0.25rem;
+    background: #fff;
+}
+
+.disclosure-group-nested {
+    margin: 0.5rem 0 0.25rem;
+}
+
+.disclosure-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    width: 100%;
+    margin: 0;
+    padding: 0.5rem 0.75rem;
+    border: 0;
+    background: #f5f5f5;
+    color: #1a1a1a;
+    text-align: left;
+    cursor: pointer;
+}
+
+.disclosure-marker {
+    flex: 0 0 auto;
+    width: 1rem;
+}
+
+.disclosure-body {
+    padding: 0.5rem 0.75rem 0.75rem;
+}
+
+.landlord-total {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 0.5rem 1rem;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    border-top: 2px solid #1a1a1a;
+    font-size: 1.05rem;
 }
