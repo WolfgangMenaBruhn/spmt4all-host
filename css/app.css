@@ -137,6 +137,10 @@ html, body {
     vertical-align: top;
 }
 
+.data-table td.cell-multiline {
+    white-space: pre-line;
+}
+
 .data-table tbody tr {
     cursor: pointer;
 }
@@ -291,9 +295,17 @@ button.address-block-summary {
     min-width: 8rem;
 }
 
-.address-block .actions,
-.address-block-body button {
+.address-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
     margin-top: 0.25rem;
+}
+
+.address-block .actions,
+.address-block-body .address-actions button {
+    margin-top: 0;
 }
 
 .form-grid {
