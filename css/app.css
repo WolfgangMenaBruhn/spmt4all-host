@@ -560,6 +560,25 @@ button.address-block-summary {
     min-width: 0;
 }
 
+.allocation-param-unit-inline {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.75rem 1rem;
+    flex: 1 1 100%;
+    min-width: 0;
+}
+
+.allocation-param-unit-caption {
+    flex: 0 1 auto;
+    font-weight: 600;
+}
+
+.allocation-param-unit-inline > select {
+    flex: 1 1 12rem;
+    min-width: min(100%, 12rem);
+}
+
 .allocation-param-name-input-row {
     display: flex;
     align-items: center;
@@ -1124,13 +1143,24 @@ input[type="checkbox"] {
     white-space: normal;
 }
 
+.result-summary .result-address {
+    white-space: pre-line;
+}
+
+.result-details {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
 .result-position {
     margin-bottom: 0.75rem;
 }
 
 .result-position-title {
-    margin: 0 0 0.25rem;
+    margin: 0;
     font-size: 1rem;
+    font-weight: 600;
 }
 
 .result-breakdown {
