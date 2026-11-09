@@ -536,11 +536,201 @@ button.address-block-summary {
     justify-content: center;
 }
 
+.heat-separation-block {
+    flex: 1 1 100%;
+    margin-top: 0.5rem;
+    border: 1px solid #d0d7de;
+    border-radius: 0.35rem;
+    padding: 0.5rem 0.75rem;
+    background: #f8fafc;
+}
+
+.heat-separation-toggle {
+    display: flex;
+    width: 100%;
+    border: none;
+    background: transparent;
+    padding: 0.25rem 0;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    text-align: left;
+    color: inherit;
+}
+
+.heat-separation-body {
+    display: flex;
+    flex-direction: column;
+    gap: 0.65rem;
+    margin-top: 0.5rem;
+}
+
+.heat-separation-formula-row,
+.heat-separation-v-row,
+.heat-separation-label-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.heat-separation-param {
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.35rem;
+}
+
+.heat-separation-param > .type-picker,
+.heat-separation-param > .heat-separation-preset-row,
+.heat-separation-param > .heat-separation-preset-stack,
+.heat-separation-param > .heat-separation-mode-preset-row {
+    flex: 0 0 auto;
+}
+
+.heat-separation-mode-caption {
+    margin: 0;
+    font-size: 0.9rem;
+    color: #4b5563;
+}
+
+.heat-separation-mode-preset-row {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    column-gap: 1rem;
+    row-gap: 0.25rem;
+    align-items: center;
+    width: 100%;
+    min-width: 0;
+}
+
+.heat-separation-mode-preset-row > .type-picker {
+    display: contents;
+}
+
+.heat-separation-mode-preset-row > .type-picker > .type-picker-label {
+    grid-column: 1;
+    grid-row: 1;
+    margin-bottom: 0;
+}
+
+.heat-separation-mode-preset-row > .type-picker > .type-picker-trigger {
+    grid-column: 1;
+    grid-row: 2;
+    margin-top: 0;
+    width: 100%;
+    min-height: 2.25rem;
+}
+
+.heat-separation-mode-preset-row > .type-picker > .type-picker-dropdown {
+    grid-column: 1;
+    grid-row: 3;
+    position: relative;
+}
+
+.heat-separation-mode-preset-row > .heat-separation-preset-stack {
+    display: contents;
+}
+
+.heat-separation-mode-preset-row > .heat-separation-preset-stack > .heat-separation-preset-caption {
+    grid-column: 2;
+    grid-row: 1;
+    margin-bottom: 0;
+    white-space: nowrap;
+}
+
+.heat-separation-mode-preset-row > .heat-separation-preset-stack > .heat-separation-preset-input-row {
+    grid-column: 2;
+    grid-row: 2;
+    flex: 0 1 auto;
+    width: auto;
+    min-width: 0;
+}
+
+.heat-separation-mode-preset-row > .heat-separation-preset-stack > .heat-separation-preset-input-row > input {
+    margin: 0;
+    padding: 0.4rem 0.5rem;
+    line-height: 1.3;
+    box-sizing: border-box;
+    min-height: 2.25rem;
+}
+
+@media (max-width: 36rem) {
+    .heat-separation-mode-preset-row {
+        grid-template-columns: 1fr;
+    }
+
+    .heat-separation-mode-preset-row > .type-picker > .type-picker-label,
+    .heat-separation-mode-preset-row > .type-picker > .type-picker-trigger,
+    .heat-separation-mode-preset-row > .type-picker > .type-picker-dropdown,
+    .heat-separation-mode-preset-row > .heat-separation-preset-stack > .heat-separation-preset-caption,
+    .heat-separation-mode-preset-row > .heat-separation-preset-stack > .heat-separation-preset-input-row {
+        grid-column: 1;
+    }
+
+    .heat-separation-mode-preset-row > .type-picker > .type-picker-label {
+        grid-row: 1;
+    }
+
+    .heat-separation-mode-preset-row > .type-picker > .type-picker-trigger {
+        grid-row: 2;
+    }
+
+    .heat-separation-mode-preset-row > .heat-separation-preset-stack > .heat-separation-preset-caption {
+        grid-row: 3;
+    }
+
+    .heat-separation-mode-preset-row > .heat-separation-preset-stack > .heat-separation-preset-input-row {
+        grid-row: 4;
+    }
+
+    .heat-separation-mode-preset-row > .type-picker > .type-picker-dropdown {
+        grid-row: 5;
+    }
+}
+
+.heat-separation-param > .heat-separation-preset-row {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    align-items: center;
+    gap: 0.5rem 0.75rem;
+    flex: 0 1 auto;
+    margin-bottom: 0;
+    min-width: 0;
+    width: 100%;
+}
+
+.heat-separation-preset-row > .heat-separation-preset-caption {
+    flex: 0 0 auto;
+    white-space: nowrap;
+}
+
+.heat-separation-preset-input-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.35rem;
+    flex: 1 1 8rem;
+    min-width: 0;
+    width: 100%;
+}
+
+.heat-separation-preset-input-row > input {
+    display: inline-block;
+    flex: 1 1 8rem;
+    min-width: 0;
+    width: auto;
+}
+
 .type-picker-info-explanation,
 .type-picker-info-example {
     margin: 0;
     font-size: 0.95rem;
     line-height: 1.45;
+    white-space: pre-line;
 }
 
 .type-picker-info-example-label {
@@ -552,6 +742,15 @@ button.address-block-summary {
 .allocation-param-row .type-picker {
     flex: 1 1 16rem;
     min-width: min(100%, 16rem);
+}
+
+.heat-separation-param.allocation-param-row .type-picker {
+    flex: 1 1 14rem;
+}
+
+.heat-separation-param.allocation-param-row > .heat-separation-mode-preset-row {
+    flex: 0 0 auto;
+    width: 100%;
 }
 
 .allocation-param-row {
@@ -773,7 +972,36 @@ button.address-block-summary {
 }
 
 .dialog-footer-actions {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem;
     margin-top: 0;
+}
+
+.dialog-footer-actions-primary {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+}
+
+.dialog-footer-actions-trailing {
+    margin-left: auto;
+}
+
+.property-info-summary {
+    margin: 0;
+    padding: 0.75rem;
+    white-space: pre-wrap;
+    word-break: break-word;
+    font-family: Consolas, "Courier New", monospace;
+    font-size: 0.9rem;
+    line-height: 1.4;
+    background: #f8fafc;
+    border: 1px solid #d0d7de;
+    border-radius: 0.35rem;
+    max-height: min(50vh, 28rem);
+    overflow: auto;
 }
 
 .dialog-page h1.dialog-title {
