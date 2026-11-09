@@ -327,6 +327,10 @@ button.address-block-summary {
     margin-top: 0.75rem;
 }
 
+.actions-below-gap {
+    margin-bottom: 1rem;
+}
+
 .overlay {
     position: fixed;
     inset: 0;
@@ -371,6 +375,11 @@ button.address-block-summary {
 .overlay-dialog-wide {
     width: min(52rem, 96vw);
     max-width: min(52rem, 96vw);
+}
+
+.overlay-dialog-header {
+    flex: 0 0 auto;
+    padding-bottom: 0.25rem;
 }
 
 .overlay-dialog-body {
@@ -1201,6 +1210,10 @@ input[type="checkbox"] {
 
 .disclosure-body {
     padding: 0.5rem 0.75rem 0.75rem;
+}
+
+.disclosure-body > .allocation-param-row {
+    margin-bottom: 0.5rem;
 }
 
 .landlord-total {
