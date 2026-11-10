@@ -199,6 +199,7 @@ button.sort-header {
     color: inherit;
     cursor: pointer;
     text-align: left;
+    white-space: nowrap;
 }
 
 button.sort-header:hover {
