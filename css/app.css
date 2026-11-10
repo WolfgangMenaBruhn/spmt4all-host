@@ -189,6 +189,22 @@ html, body {
     vertical-align: top;
 }
 
+button.sort-header {
+    background: none;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font: inherit;
+    font-weight: inherit;
+    color: inherit;
+    cursor: pointer;
+    text-align: left;
+}
+
+button.sort-header:hover {
+    text-decoration: underline;
+}
+
 .data-table td.cell-multiline {
     white-space: pre-line;
 }
