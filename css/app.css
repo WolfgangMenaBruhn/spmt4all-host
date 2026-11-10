@@ -113,6 +113,58 @@ html, body {
     margin: 0.75rem 0;
 }
 
+.cost-period-list {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.cost-period {
+    border: 1px solid #c8c8c8;
+    border-radius: 4px;
+    background: #fff;
+}
+
+.cost-period.selected {
+    border-color: #4a90d9;
+}
+
+.cost-period-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.5rem;
+    padding: 0.35rem 0.5rem;
+}
+
+.cost-period-toggle {
+    display: flex;
+    flex: 1 1 12rem;
+    align-items: center;
+    gap: 0.4rem;
+    width: auto;
+    margin: 0;
+    border: none;
+    background: transparent;
+    padding: 0.25rem 0;
+    font: inherit;
+    font-weight: 600;
+    text-align: left;
+    color: inherit;
+    cursor: pointer;
+}
+
+.cost-period-chevron {
+    display: inline-block;
+    min-width: 1rem;
+}
+
+.cost-period-body {
+    border-top: 1px solid #e2e2e2;
+    padding: 0 0.5rem 0.5rem;
+}
+
 .table-scroll {
     width: 100%;
     max-width: 100%;
