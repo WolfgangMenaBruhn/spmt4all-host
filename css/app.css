@@ -388,6 +388,12 @@ button.address-block-summary {
     margin-top: 0;
 }
 
+.form-stack {
+    display: flex;
+    flex-direction: column;
+    gap: 0.75rem;
+}
+
 .form-grid {
     display: grid;
     grid-template-columns: 1fr;
@@ -398,6 +404,36 @@ button.address-block-summary {
     .form-grid.form-grid-2 {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
+
+    .form-grid.form-grid-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+    }
+}
+
+/* Von, date, calendar, Bis, date, calendar on one line under the period row. */
+.period-dates-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.5rem 1.5rem;
+}
+
+.period-date-pair {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex: 1 1 16rem;
+    min-width: 0;
+}
+
+.period-date-pair .field-label {
+    margin: 0;
+    flex: 0 0 auto;
+}
+
+.period-date-pair .date-field {
+    flex: 1 1 8rem;
+    min-width: 8rem;
 }
 
 .actions {
