@@ -210,6 +210,17 @@ button.sort-header:hover {
     white-space: pre-line;
 }
 
+.data-table .row-primary {
+    font-weight: 600;
+}
+
+.data-table .settlement-property-cell {
+    display: flex;
+    flex-direction: column;
+    gap: 0.1rem;
+    line-height: 1.25;
+}
+
 .data-table tbody tr {
     cursor: pointer;
 }
