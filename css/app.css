@@ -1260,8 +1260,7 @@ input[type="checkbox"] {
     color: #8a8a8a;
 }
 
-.date-field input.date-text:disabled,
-.date-field input.date-picker:disabled {
+.date-field input.date-text:disabled {
     color: #1b2838;
     -webkit-text-fill-color: #1b2838;
     opacity: 1;
