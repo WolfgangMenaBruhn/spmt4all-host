@@ -1227,6 +1227,24 @@ input[type="checkbox"] {
     margin: 1rem 0 0.5rem;
 }
 
+.section-toggle {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+    margin: 1rem 0 0.5rem;
+    padding: 0;
+    border: 0;
+    background: transparent;
+    color: #1b2838;
+    font-size: 1.05rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.section-toggle .disclosure-marker {
+    font-weight: 400;
+}
+
 .confirm-dialog p {
     white-space: pre-line;
 }
