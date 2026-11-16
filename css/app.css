@@ -493,6 +493,33 @@ button.address-block-summary {
     max-width: min(52rem, 96vw);
 }
 
+.overlay-dialog-help {
+    width: min(42rem, 96vw);
+    max-width: min(42rem, 96vw);
+}
+
+.info-help-heading {
+    margin: 0.9rem 0 0.35rem;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #1b2838;
+}
+
+.info-help-text {
+    margin: 0;
+    line-height: 1.45;
+}
+
+.info-help-list {
+    margin: 0.35rem 0 0;
+    padding-left: 1.2rem;
+    line-height: 1.45;
+}
+
+.info-help-list li + li {
+    margin-top: 0.35rem;
+}
+
 .overlay-dialog-header {
     flex: 0 0 auto;
     padding-bottom: 0.25rem;
@@ -1216,6 +1243,19 @@ input[type="checkbox"] {
     display: flex;
     align-items: center;
     margin-bottom: 0.25rem;
+}
+
+.checkbox-with-info {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.15rem;
+    margin-bottom: 0.25rem;
+}
+
+.checkbox-with-info > .checkbox-label {
+    margin-bottom: 0;
+    width: auto;
 }
 
 .checkbox-label.checkbox-label-end input[type="checkbox"] {
