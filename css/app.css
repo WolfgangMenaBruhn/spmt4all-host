@@ -1249,6 +1249,14 @@ input[type="checkbox"] {
     vertical-align: middle;
 }
 
+.filter-field-label-row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 0.25rem;
+    margin-bottom: 0.25rem;
+}
+
 .checkbox-label {
     display: flex;
     align-items: center;
