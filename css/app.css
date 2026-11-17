@@ -1207,6 +1207,10 @@ label > .error,
     display: block;
 }
 
+label > .hint[data-testid="service-charge-settlement-input-field-scope"] {
+    white-space: pre-line;
+}
+
 .example-errors {
     white-space: pre-line;
     margin: 0 0 0.5rem;
@@ -1610,7 +1614,7 @@ input[type="checkbox"] {
 
 .disclosure-toggle {
     display: flex;
-    align-items: center;
+    align-items: flex-start;
     gap: 0.5rem;
     width: 100%;
     margin: 0;
@@ -1625,6 +1629,11 @@ input[type="checkbox"] {
 .disclosure-marker {
     flex: 0 0 auto;
     width: 1rem;
+}
+
+.disclosure-title {
+    flex: 1 1 auto;
+    white-space: pre-line;
 }
 
 .disclosure-body {
