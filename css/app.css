@@ -489,8 +489,18 @@ button.address-block-summary {
 }
 
 .overlay-dialog-wide {
-    width: min(52rem, 96vw);
-    max-width: min(52rem, 96vw);
+    width: min(72rem, 98%);
+    max-width: min(72rem, 98%);
+}
+
+/* Mieter editor inside the Mietobjekt dialog: assignment table needs more horizontal room. */
+.tenant-embedded-editor {
+    width: min(92rem, 98%);
+    max-width: min(92rem, 98%);
+}
+
+.tenant-embedded-editor .tenant-unit-table .date-field {
+    min-width: 7rem;
 }
 
 .overlay-dialog-help {
