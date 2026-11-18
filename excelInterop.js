@@ -337,6 +337,66 @@ window.excelInterop = {
     },
 
     /**
+     * Captures Escape in the Office dialog (capture phase) so the host does not close
+     * the window before Blazor can ask about unsaved changes.
+     * dotNetRef receives OnDialogEscapeAsync().
+     */
+    registerDialogEscapeHandler(dotNetRef) {
+        this.unregisterDialogEscapeHandler();
+        this._dialogEscapeHandler = (event) => {
+            if (!event || event.key !== "Escape") {
+                return;
+            }
+
+            event.preventDefault();
+            event.stopImmediatePropagation();
+            dotNetRef.invokeMethodAsync("OnDialogEscapeAsync");
+        };
+        window.addEventListener("keydown", this._dialogEscapeHandler, true);
+    },
+
+    unregisterDialogEscapeHandler() {
+        if (!this._dialogEscapeHandler) {
+            return;
+        }
+
+        window.removeEventListener("keydown", this._dialogEscapeHandler, true);
+        this._dialogEscapeHandler = null;
+    },
+
+    /**
+     * Survives Office Escape/X when the host closes the dialog before keydown reaches the page.
+     * Same-origin localStorage is shared with the task pane window.
+     */
+    writeDialogDraft(slot, json) {
+        try {
+            localStorage.setItem(this._dialogDraftKey(slot), json == null ? "" : String(json));
+        } catch {
+            // Quota or privacy mode — discard confirm after Escape will not be available.
+        }
+    },
+
+    readDialogDraft(slot) {
+        try {
+            return localStorage.getItem(this._dialogDraftKey(slot));
+        } catch {
+            return null;
+        }
+    },
+
+    clearDialogDraft(slot) {
+        try {
+            localStorage.removeItem(this._dialogDraftKey(slot));
+        } catch {
+            // ignore
+        }
+    },
+
+    _dialogDraftKey(slot) {
+        return "spmt4all.unsavedDialogDraft." + String(slot || "");
+    },
+
+    /**
      * Copies plain text to the system clipboard (Office dialog / task pane).
      */
     async copyTextToClipboard(text) {
