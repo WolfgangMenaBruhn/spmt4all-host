@@ -493,6 +493,10 @@ button.address-block-summary {
     max-width: min(72rem, 98%);
 }
 
+.rental-unit-editor-dialog {
+    min-height: min(32rem, 85vh);
+}
+
 /* Mieter editor inside the Mietobjekt dialog: assignment table needs more horizontal room. */
 .tenant-embedded-editor {
     width: min(92rem, 98%);
